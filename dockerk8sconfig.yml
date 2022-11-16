@@ -20,7 +20,62 @@ build: point to your Dockerfile # this setting is something a CI tool like Jenki
 # typically you want notifications - did my build succeeed, did it fail? same for 
 
 # this is known as chatops...
+#inside the slack channel you can also send a link to your build job in Jenkins
+#so you can see the progress of your build
 slackchannel: my-app-notifications-get-sent-to-this-channel #error message/success messages, etc...
+teamschannel: teams-channel
+
+#we want to specify the branch(es) that when we commit to these branches, that will trigger a new build and deploy
+# but if i am on a feature branch, that will not trigger anything to happen
+branch: [main, some-other-branch]
+
+#typically companies have multiple k8s clusters - 
+#inside this file you would need to specify the k8s cluster(s) that you need to deploy to
+
+#also we need to deploy to a NON production environment as well....
+
+#in k8s: dev clusters and prod clusters/stage, etc...
+
+# the docker image gets sent to these clusters, where k8 will wrap your image with pods then those pods
+# will live on these clusters...
+# why do we have separate dev and prod clusters?
+# prod is SERIOUS - that cluster is locked down, will probably restrict you from stepping inside the pod
+
+# HOW WOULD YOU TYPICALLY ASSESS THE NEEDS OF AN APPLICATION??
+# ANSWER: THROUGH A PERFORMANCE TEST....Jmeter is a possibility...other perf testing platforms...
+
+#maybe run some test here...
+
+minPods: 5
+maxPods: 1000
+
+# I am a developer - i make changes in my git repository, that change triggers a build because let's say I commited to the main branch, and then 
+#Jenkins will automatically put the Docker image in artefactory, then that image gets pulled from artefactory and deployed to the k8s clusters
+# that i specify in this yaml file...during that process i get notified via Slack of build progress/deploy progress and if any errors...
+
+
+# something is missing!
+# First of all what is listening to github to see if any commits are made to the main branch?
+# Also, what is sending out Slack notifications
+# Also, what is grabbing the Docker image from Artefactory and applying it to K8s?
+# ie, what is running those kubectl commands that we saw?? like kubectl apply - f deployment.yaml
+# and what is updating the deployment.yaml file??
+
+# workflow orchestration - think puppet master, or a technical wedding planner
+# wedding planner - sends out invites, coordinates with the caterer, venues...
+
+#Walmart - uses Concord
+
+
+
+
+clusters: [wus-dev-a2, wus-prod-a2, eus-prod-g2]
+
+#west us, dev environment, and Azure
+
+
+
+
 
 
 
