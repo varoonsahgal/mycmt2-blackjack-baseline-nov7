@@ -1,0 +1,30 @@
+#this file holds all the configurations necessary in order to build and deploy your application
+build: point to your Dockerfile # this setting is something a CI tool like Jenkins might look
+# Jenkins looks at your dockerfile and then it builds it creates a Docker image!
+# But where does that Docker image go??
+# Docker hub is public, so we don't want to share our images with the rest of the world...
+# So, our images would go into Artefactory, which is basically a repository/place to put Docker images (and also other build artficats)
+
+#
+
+# build stage
+# This config file -> gets fed into Jenkins (our build tool) -> Jenkins will build the Docker image by looking at the Dockerfile -> 
+# Jenkins will put the Docker image inside Artefactory (nfcu.prod.docker....)
+
+
+# deploy stage
+# How do we take that Docker image and deploy it to kubernetes??
+
+
+#what other things would you want to do when building/deploying?
+# typically you want notifications - did my build succeeed, did it fail? same for 
+
+# this is known as chatops...
+slackchannel: my-app-notifications-get-sent-to-this-channel #error message/success messages, etc...
+
+
+
+
+
+
+
