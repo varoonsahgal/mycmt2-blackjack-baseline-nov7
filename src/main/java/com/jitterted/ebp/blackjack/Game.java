@@ -115,7 +115,7 @@ public class Game {
                     return;
                 }
             } else {
-                System.out.println("You need to [H]it or [S]tand");
+                System.out.println("You need to [H]it or Stand");
             }
         }
     }
